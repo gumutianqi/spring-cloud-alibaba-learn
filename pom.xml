@@ -15,21 +15,13 @@
     <version>1.0.0-SNAPSHOT</version>
     <modules>
 
-        <module>user-service</module>
+        <module>user-project</module>
         <module>cms-project</module>
     </modules>
     <packaging>pom</packaging>
 
     <name>spring-cloud-alibaba-learn</name>
     <description>base on spring-cloud-alibaba</description>
-
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java.version>1.8</java.version>
-        <!-- 可以在这里强制覆盖依赖默认的版本号，只需要与依赖版本号使用的属性名称一致即可 -->
-
-    </properties>
 
     <scm>
         <url>https://github.com/gumutianqi/spring-cloud-alibaba-learn</url>

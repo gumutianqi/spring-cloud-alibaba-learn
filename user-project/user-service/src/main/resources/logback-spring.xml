@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+    <include resource="org/springframework/boot/logging/logback/base.xml"/>
+
+    <!-- 第一步：定义YML文件中的参数 -->
+    <!-- 定义应用名称 -->
+    <springProperty scope="context" name="app_name" source="spring.application.name"/>
+    <!-- 定义应用端口 -->
+    <springProperty scope="context" name="app_port" source="server.port"/>
+    <!-- 定义所属环境 -->
+    <springProperty scope="context" name="app_env" source="spring.profiles.active"/>
+
+    <springProperty scope="context" name="app_root_level" source="logging.level" defaultValue="INFO"/>
+
+    <springProperty scope="context" name="app_level" source="logging.level" defaultValue="DEBUG"/>
+
+    <!--<contextName>${app_name}</contextName>-->
+
+    <!-- 第二步：定义变量 -->
+    <!-- 定义日志级别 -->
+    <property name="LOG_LEVEL" value="INFO"/>
+    <!-- 定义日志输出路径 -->
+    <property name="LOG_PATH" value="./logs/${app_name}"/>
+    <!-- 文件超过100MB时触发滚动 -->
+    <property name="MAX_FILE_SIZE" value="100MB"/>
+    <!-- 最多保留30天的日志 -->
+    <property name="MAX_HISTORY" value="30"/>
+    <!-- Throwable的最大深度 -->
+    <property name="MAX_DEPTH_PER_THROWABLE" value="50"/>
+    <!-- 堆栈字符串的最大长度 -->
+    <property name="MAX_LENGTH" value="200000"/>
+
+    <appender name="APP_LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH}/${app_name}.log</file>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] [%-5level] %X{request_id} [%logger{36}] [%line]: %msg%n
+            </pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_PATH}/bak/%d{yyyy-MM-dd}/${app_name}-%i.log.gz</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>${MAX_FILE_SIZE}</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <maxHistory>${MAX_HISTORY}</maxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <!-- 第四步：定义自定义日志和第三方日志控制 -->
+    <logger name="org.springframework" level="INFO"/>
+    <logger name="org.springframework.boot.autoconfigure.logging" level="WARN"/>
+
+    <!-- 第五步：日志输出：两份不同格式相同内容的日志 -->
+    <root level="${app_root_level}">
+        <!-- 用于方便服务器上查看 -->
+        <appender-ref ref="APP_LOG"/>
+    </root>
+
+    <!-- 第六步：定义环境日志 -->
+    <!-- 开发环境 -->
+    <springProfile name="dev">
+        <logger name="cn.sxw" level="${app_level}"/>
+    </springProfile>
+    <!-- 测试环境 -->
+    <springProfile name="test">
+        <logger name="cn.sxw" level="${app_level}"/>
+    </springProfile>
+    <!-- 预发布环境 -->
+    <springProfile name="beta">
+        <logger name="cn.sxw" level="${app_level}"/>
+    </springProfile>
+    <!-- 生产环境 -->
+    <springProfile name="prod">
+        <logger name="cn.sxw" level="${app_level}"/>
+    </springProfile>
+
+</configuration>

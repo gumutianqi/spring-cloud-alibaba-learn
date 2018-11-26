@@ -1,0 +1,54 @@
+## global configuration
+info:
+  build:
+    artifact: @project.artifactId@
+    name: @project.name@
+    description: @project.description@
+    version: @project.version@
+    java-version: @java.version@
+    encoding: @project.build.sourceEncoding@
+    environment: ${spring.profiles.active}
+    server-port: ${server.port}
+
+spring:
+  application:
+    name: ${info.build.name}
+  profiles:
+    active: dev
+  cloud.loadbalancer.retry.enabled: true
+  resources:
+    add-mappings: true
+  mvc:
+    throw-exception-if-no-handler-found: true
+  jackson:
+    date-format: "yyyy-MM-dd HH:mm:ss"
+    locale: zh_CN
+    time-zone: "GMT+8"
+  http:
+    converters:
+      preferred-json-mapper: jackson
+  aop:
+    proxy-target-class: true
+    auto: true
+  cloud:
+    nacos:
+      config:
+        server-addr: 127.0.0.1:8848
+        file-extension: yaml
+        group: PRIVATE
+        namespace: d9c3f153-1f76-4902-b94a-c689767f2ce7
+      discovery:
+        register-enabled: true
+        server-addr: 127.0.0.1:8848
+        cluster-name: USER_SERVICE
+        namespace: d9c3f153-1f76-4902-b94a-c689767f2ce7
+
+server:
+  port: 8080
+
+### Spring Boot Management Enabled
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus

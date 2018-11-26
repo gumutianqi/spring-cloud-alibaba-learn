@@ -1,0 +1,33 @@
+### Logback Configuration
+logging:
+  level:
+    root: INFO
+    me.weteam: DEBUG
+    org.springframework.web: INFO
+
+### 应用自定义配置信息
+#me.weteam:
+#  app-id: 8000
+#  app-name: ${info.build.name}-${spring.profiles.active}
+#  token: false
+#  auth: false
+#  point: false
+#  interceptor-pattern: []
+#  exclude-interceptor-pattern: []
+#  converter-json: true
+#  converter-json-pattern: ["/api/**", "/error"]
+
+## Swagger configuration
+swagger:
+  enabled: true
+  title: ${info.build.name}
+  description: ${info.build.description}
+  version: ${info.build.version}
+  base-package: me.weteam.user
+  base-path: /api/**
+
+
+## Nacos Configuration
+
+## sentinel-transport 控制台配置项
+

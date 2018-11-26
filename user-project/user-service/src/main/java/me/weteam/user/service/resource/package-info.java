@@ -11,4 +11,4 @@
  * @slogon 站在巨人的肩膀上
  * @since 1.0.0
  */
-package me.weteam.user.service.controller;
+package me.weteam.user.service.resource;

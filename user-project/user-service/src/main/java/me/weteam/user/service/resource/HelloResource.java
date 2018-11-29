@@ -33,7 +33,6 @@ public class HelloResource implements HelloClient {
 
     @Override
     public String hello() {
-
         return "Hello World.";
     }
 

@@ -42,6 +42,18 @@ spring:
         server-addr: 127.0.0.1:8848
         cluster-name: USER_SERVICE
         namespace: d9c3f153-1f76-4902-b94a-c689767f2ce7
+    sentinel:
+      enabled: true
+      datasource:
+        nacos:
+          server-addr: 127.0.0.1:8848
+          group: Sentinel
+          namespace: d9c3f153-1f76-4902-b94a-c689767f2ce7
+          data-id:
+            flow-rule: user_service_test.flow.rule
+            param-rule: user_service_test.param.rule
+      transport:
+        dashboard: 127.0.0.1:8849
 
 server:
   port: 8080
@@ -51,4 +63,4 @@ management:
   endpoints:
     web:
       exposure:
-        include: health,info,prometheus
+        include: '*'

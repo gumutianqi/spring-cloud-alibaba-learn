@@ -30,7 +30,7 @@
         <!-- 可以在这里强制覆盖依赖默认的版本号，只需要与依赖版本号使用的属性名称一致即可 -->
 
         <user-client.version>1.0.0-SNAPSHOT</user-client.version>
-
+        <keycloak.version>4.5.0.Final</keycloak.version>
     </properties>
 
 </project>

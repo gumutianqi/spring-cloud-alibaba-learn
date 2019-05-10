@@ -33,30 +33,24 @@ spring:
   cloud:
     nacos:
       config:
-        server-addr: 127.0.0.1:8848
+        server-addr: 172.16.30.209:8848
+        namespace: 2679703e-b03d-4132-8436-53c5b9b33700
         file-extension: yaml
-        group: PRIVATE
-        namespace: d9c3f153-1f76-4902-b94a-c689767f2ce7
+        group: DEVELOP
+        ext-config:
+          - data-id: common-log.yml
+            group: COMMON
+            refresh: true
+          - data-id: user-service.yml
+            group: DEVELOP
+            refresh: true
       discovery:
-        register-enabled: true
-        server-addr: 127.0.0.1:8848
-        cluster-name: USER_SERVICE
-        namespace: d9c3f153-1f76-4902-b94a-c689767f2ce7
-    sentinel:
-      enabled: true
-      datasource:
-        nacos:
-          server-addr: 127.0.0.1:8848
-          group: Sentinel
-          namespace: d9c3f153-1f76-4902-b94a-c689767f2ce7
-          data-id:
-            flow-rule: user_service_test.flow.rule
-            param-rule: user_service_test.param.rule
-      transport:
-        dashboard: 127.0.0.1:8849
-
+        server-addr: 172.16.30.209:8848
+        namespace: 2679703e-b03d-4132-8436-53c5b9b33700
+        cluster-name: USER-SERVICE
+        weight: 1
 server:
-  port: 8080
+  port: 8081
 
 ### Spring Boot Management Enabled
 management:

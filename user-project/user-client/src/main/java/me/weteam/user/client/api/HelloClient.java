@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @slogon 站在巨人的肩膀上
  * @since 1.0.0
  */
-@Api(value = "Hello-Client", description = "Hello Client 演示接口", protocols = "application/json")
+@Api(value = "Hello Client 演示接口", protocols = "application/json")
 @FeignClient(value = AppServiceDefine.APP_SERVICE_NAME)
 @RequestMapping(value = AppServiceDefine.MAPPING_API_PREFIX, produces = "application/json")
 public interface HelloClient {
@@ -41,4 +41,12 @@ public interface HelloClient {
     @ApiOperation(value = "hello-alibaba", notes = "hello alibaba example", nickname = "HelloClient-alibaba")
     @GetMapping("/alibaba")
     String alibaba();
+
+    /**
+     * aliyun log hub
+     * @return
+     */
+    @ApiOperation(value = "aliyun-log-hub", nickname = "HelloClient-aliyunLog")
+    @GetMapping("/aliyun_log")
+    String aliyunLog();
 }

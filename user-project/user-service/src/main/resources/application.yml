@@ -5,18 +5,6 @@ logging:
     me.weteam: DEBUG
     org.springframework.web: INFO
 
-### 应用自定义配置信息
-#me.weteam:
-#  app-id: 8000
-#  app-name: ${info.build.name}-${spring.profiles.active}
-#  token: false
-#  auth: false
-#  point: false
-#  interceptor-pattern: []
-#  exclude-interceptor-pattern: []
-#  converter-json: true
-#  converter-json-pattern: ["/api/**", "/error"]
-
 ## Swagger configuration
 swagger:
   enabled: true
@@ -25,24 +13,3 @@ swagger:
   version: ${info.build.version}
   base-package: me.weteam.user
   base-path: /api/**
-
-
-## Keycloak configuration
-#keycloak:
-#  enabled: true
-#  auth-server-url: http://172.16.1.17:8855/auth
-#  realm: sxw
-#  ssl-required: none
-#  public-client: true
-#  resource: demo8080
-#  use-resource-role-mappings: true
-#  security-constraints:
-#    - authRoles: ["user", "general"]
-#      securityCollections:
-#        - name: userRole
-#          patterns: ["/user/*"]
-#    - authRoles: ["manager"]
-#      securityCollections:
-#        - name: managerRole
-#          patterns: ["/admin/*"]
-
